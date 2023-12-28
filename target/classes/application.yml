@@ -1,0 +1,21 @@
+bot.name :
+  EvosCloneUzBot
+bot.token :
+  6642931179:AAFTkoInven3Lutt2th0hOKgwOk0gsbXkhM
+
+spring:
+  datasource:
+    url: jdbc:postgresql://monorail.proxy.rlwy.net:11291/railway
+    username: postgres
+    password: 26af1Ea2Gb3CBcdfEecA-EB-b5FBd5ae
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        globally_quoted_identifiers: true
+        format_sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
