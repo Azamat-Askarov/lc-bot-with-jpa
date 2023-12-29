@@ -1,6 +1,5 @@
 package com.example.telegrambotshablon.service;
 
-
 import com.example.telegrambotshablon.config.BotConfig;
 import com.example.telegrambotshablon.dto.BotUser;
 import com.example.telegrambotshablon.enums.UserStatus;
@@ -63,7 +62,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                                 "/shikoyat_taklif - bot adminiga xabar yuborish ");
                         sendMsg(sendMessage);
                     } else if (currentUser.getStep().equals(UserStep.END) && message.hasText() && message.getText().equals("/foydalanuvchi")) {
-                        if (message.getChatId().equals(5952923848L) || message.getFrom().getId().equals(659565242L) || message.getChatId().equals(5706951243L) || message.getChatId().equals(5601022853L)) {
+                        if (message.getFrom().getId().equals(5601022853L) || message.getChatId().equals(570695243L)) {
                             BotUser adminUser = botUserService.getUserById(user.getId()); /** ADMIN STEPINI O'ZGARTIRISH */
                             adminUser.setStep(UserStep.ADMIN_GET_USER);
                             botUserService.updateUser(adminUser);
@@ -80,7 +79,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                             sendMessage.setText("O'zingiz haqida ma'lumotlar.\n\uD83D\uDE4B\uD83C\uDFFB\u200D♂\uD83D\uDE4B\uD83C\uDFFB\u200D♀  Ism: "
                                     + botUser.getName() + "\n\uD83D\uDCF1 Tel: " + botUser.getPhone_num() + "\n\uD83D\uDCCB Ro'yxatdan o'tgan: "
                                     + botUser.getCreateDate() + "\n\uD83D\uDCDA Qiziqishi: " + botUser.getInterest() + "\n\uD83D\uDCE9 Kim taklif qilgan: "
-                                    + botUser.getRef_user_phone() + "\n\uD83D\uDCEC Takliflari soni: " + botUser.getRef_count());
+                                    + botUser.getRef_user_phone() + "\n\uD83D\uDCB0 Bonuslari: " + botUser.getRef_count() * 1000+" so'm");
                             sendMsg(sendMessage);
                         }
                     } else if (message.hasText() && currentUser.getStep().equals(UserStep.ADMIN_GET_USER)) {
@@ -92,7 +91,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                                     botUser.getName() + "\n\uD83D\uDCF1 Tel: " + botUser.getPhone_num() +
                                     "\n\uD83D\uDCCB Ro'yxatdan o'tgan: " + botUser.getCreateDate() + "\n\uD83D\uDCDA Qiziqishi: "
                                     + botUser.getInterest() + "\n\uD83D\uDCE9 Kim taklif qilgan: " + botUser.getRef_user_phone() +
-                                    "\n\uD83D\uDCEC Takliflari soni: " + botUser.getRef_count());
+                                    "\n\uD83D\uDCB0 Bonuslari: " + botUser.getRef_count() * 1000+" so'm");
                             sendMsg(sendMessage);
                         } else {
                             SendMessage sendMessage = new SendMessage();
@@ -115,13 +114,12 @@ public class TelegramBot extends TelegramLongPollingBot {
                     } else if (message.hasText() && currentUser.getStep().equals(UserStep.SHIKOYAT_TAKLIF)) {
                         BotUser botUser = botUserService.getUserById(currentUser.getTg_id());
                         SendMessage sendMessage = new SendMessage();
-                        sendMessage.setChatId(659565242L);
+                        sendMessage.setChatId(5601022853L);
                         sendMessage.setText("\uD83D\uDCE9 Foydalanuvchidan xabar keldi\uD83D\uDC40\n\n" +
                                 "\uD83D\uDE4B\uD83C\uDFFB\u200D♂\uD83D\uDE4B\uD83C\uDFFB Ism: " + botUser.getName() +
                                 "\n\uD83D\uDCF1 Tel: " + botUser.getPhone_num() + "\n\uD83D\uDCCB Ro'yxatdan o'tgan: " +
                                 botUser.getCreateDate() + "\n\uD83D\uDCDA Qiziqishi: " + botUser.getInterest() +
-                                "\n\uD83D\uDCE9 Kim taklif qilgan: " + botUser.getRef_user_phone() + "\n\uD83D\uDCEC Takliflari soni: "
-                                + botUser.getRef_count() + "\n\n\uD83D\uDC49\uD83C\uDFFB " + message.getText());
+                                "\n\uD83D\uDCE9 Kim taklif qilgan: " + botUser.getRef_user_phone() + "\n\uD83D\uDCB0 Bonuslari: " + botUser.getRef_count() * 1000 + " so'm\n\n\uD83D\uDC49\uD83C\uDFFB " + message.getText());
                         sendMsg(sendMessage);
                         botUser.setStep(UserStep.END);
                         botUserService.updateUser(botUser);
@@ -130,7 +128,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                         sendMessage1.setText("Xabar yuborildi. Adminlarimiz tezda xabaringizni ko'rib chiqishadi.");
                         sendMsg(sendMessage1);
                     } else if (currentUser.getStep().equals(UserStep.END) && message.hasText() && message.getText().equals("/elon_reklama")) {
-                        if (message.getChatId().equals(659565242L) || message.getChatId().equals(5601022853L) || message.getChatId().equals(5952923848L)) {
+                        if (message.getChatId().equals(5601022853L)) {
                             BotUser botAdmin = botUserService.getUserById(currentUser.getTg_id());
                             botAdmin.setStep(UserStep.REKLAMA);
                             botUserService.updateUser(botAdmin);
@@ -192,9 +190,10 @@ public class TelegramBot extends TelegramLongPollingBot {
                             sendMessage.setChatId(currentUser.getTg_id());
                             sendMessage.setText("\uD83D\uDD17Sizning referral linkingiz:\nhttps://t.me/" + getBotUsername() +
                                     "?start=" + currentUser.getTg_id() + "\n\uD83D\uDE80Ushbu linkni do'stlaringizga uzating." +
-                                    "\n\n\uD83D\uDCB0Link orqali ro'yxatdan o'tgan har bir do'stingiz uchun sizga 10.000 so'm chegirma qo'shiladi."
-                                    + "\n\uD83C\uDF81Sizda hozir " + currentUser.getRef_count() * 10000 + " so'm chegirma mavjud.");
+                                    "\n\n\uD83D\uDCB0Link orqali ro'yxatdan o'tgan har bir do'stingiz uchun sizga 1.000 so'm chegirma qo'shiladi."
+                                    + "\n\uD83D\uDCB0Sizda hozir " + currentUser.getRef_count() * 1000 + " so'm bonus mavjud.");
                             sendMsg(sendMessage);
+
                         }
                     } else if (currentUser.getStep().equals(UserStep.PHONE_NUM) && message.hasText() && !message.hasContact()) {
                         /** phone kiritish kk, lekin text yuborilsa... */
@@ -238,25 +237,25 @@ public class TelegramBot extends TelegramLongPollingBot {
                                 if (refUser.getRef_count() % 5 == 0) {
                                     SendMessage sendMessage = new SendMessage();
                                     sendMessage.setChatId(659565242L);
-                                    sendMessage.setText("\uD83D\uDCF1Tel: " + refUser.getPhone_num() + "\n\uD83D\uDD17Takliflari soni: " + refUser.getRef_count());
+                                    sendMessage.setText("\uD83D\uDCF1Tel: " + refUser.getPhone_num() + "\n\uD83D\uDCB0Bonuslari:" + refUser.getRef_count()*1000);
                                     sendMsg(sendMessage);
                                     SendMessage sendMessage2 = new SendMessage();
                                     sendMessage2.setChatId(5952923848L);
-                                    sendMessage2.setText("\uD83D\uDCF1Tel: " + refUser.getPhone_num() + "\n\uD83D\uDD17Takliflari soni: " + refUser.getRef_count());
+                                    sendMessage2.setText("\uD83D\uDCF1Tel: " + refUser.getPhone_num() + "\n\uD83D\uDCB0Bonuslari:" + refUser.getRef_count()*1000);
                                     sendMsg(sendMessage2);
                                 }
                                 /** ref_user ga xabar yuborish */
                                 SendMessage sendRefUserMessage = new SendMessage();
                                 sendRefUserMessage.setChatId(refUser.getTg_id());
                                 sendRefUserMessage.setText("\uD83E\uDD73Sizning referral linkingiz orqali yana bir foydalanuvchi ro'yxatdan o'tdi." +
-                                        "\n\uD83D\uDCB0Sizdagi bonuslarning jami miqdori " + botUserService.getUserById(refUser.getTg_id()).getRef_count() * 10000 + " so'm");
+                                        "\n\uD83D\uDCB0Bonuslaringiz " + botUserService.getUserById(refUser.getTg_id()).getRef_count() * 1000 + " so'm");
                                 sendMsg(sendRefUserMessage);
                             }
                             SendMessage totalResultMessage = new SendMessage();
                             totalResultMessage.setChatId(currentUser.getTg_id());
                             totalResultMessage.setText("✅To'liq ro'yxatdan o'tdingiz.\n" + "\uD83D\uDD17Sizning referral linkingiz:\nhttps://t.me/" +
                                     getBotUsername() + "?start=" + currentUser.getTg_id() + "\n\uD83D\uDE80Ushbu linkni do'stlaringizga uzating." +
-                                    "\n\n\uD83D\uDCB0Link orqali ro'yxatdan o'tgan har bir do'stingiz uchun sizga 10.000 so'm chegirma qo'shiladi.");
+                                    "\n\n\uD83D\uDCB0Link orqali ro'yxatdan o'tgan har bir do'stingiz uchun sizga 1.000 so'm chegirma qo'shiladi.\nHozir sizda 10.000 so'm bonus mavjud");
                             //------------------------------------//
                             ReplyKeyboardRemove removeButton = new ReplyKeyboardRemove(); /** keyboard button yashirish */
                             removeButton.setSelective(true);
@@ -269,8 +268,8 @@ public class TelegramBot extends TelegramLongPollingBot {
                         sendMessage.setChatId(currentUser.getTg_id());
                         sendMessage.setText("\uD83D\uDD17Sizning referral linkingiz:\nhttps://t.me/" + getBotUsername() + "?start=" +
                                 currentUser.getTg_id() + "\n\uD83D\uDE80Ushbu linkni do'stlaringizga uzating." +
-                                "\n\n\uD83D\uDCB0Link orqali ro'yxatdan o'tgan har bir do'stingiz uchun sizga 10.000 so'm chegirma qo'shiladi."
-                                + "\n\uD83C\uDF81Sizda hozir " + currentUser.getRef_count() * 10000 + " so'm chegirma mavjud.");
+                                "\n\n\uD83D\uDCB0Link orqali ro'yxatdan o'tgan har bir do'stingiz uchun sizga 1.000 so'm chegirma qo'shiladi."
+                                + "\n\uD83C\uDF81Sizda hozir " + currentUser.getRef_count() * 1000 + " so'm chegirma mavjud.");
                         sendMsg(sendMessage);
                     }
                 }
@@ -280,6 +279,7 @@ public class TelegramBot extends TelegramLongPollingBot {
         }
 
     }
+
     public void createUser(Update update) {
         if (update.hasMessage()) {
             Message message = update.getMessage();
@@ -419,6 +419,7 @@ public class TelegramBot extends TelegramLongPollingBot {
 
         return keyboardMarkup;
     }
+
     public synchronized void getInterestFromUser(BotUser botUser) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(botUser.getTg_id());

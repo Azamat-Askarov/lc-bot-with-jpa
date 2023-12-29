@@ -23,17 +23,16 @@ public class BotUserEntity {
     private LocalDateTime createDate = LocalDateTime.now();
     @NotNull
     private Long tgId;
-    @Max(32)
     private String name;
     @Max(13)
     private String phoneNum;
     @Max(32)
     private String interest;
-    private int refCount = 1;
+    private int refCount = 10;
     @Max(13)
-    private String refUserPhone = "000";  //kim taklif qilgan
-    @Max(9)
+    private String refUserPhone = "0";  //kim taklif qilgan
+    @Max(32)
     private UserStep step= UserStep.valueOf("NAME");
-    @Max(9)
+    @Max(32)
     private UserStatus status = UserStatus.valueOf("NO_ACTIVE");
 }
