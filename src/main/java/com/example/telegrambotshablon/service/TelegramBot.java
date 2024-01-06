@@ -237,20 +237,26 @@ public class TelegramBot extends TelegramLongPollingBot {
                             botUser.setStep(UserStep.END);
                             botUser.setStatus(UserStatus.ACTIVE);
                             botUserService.updateUser(botUser);
+
+                            /** yangi user haqida xabar qilish */
                             SendMessage admin1gaXabar = new SendMessage();
                             admin1gaXabar.setChatId(5601022853L);
                             admin1gaXabar.setText("➕Yangi foydalanuvchi.\n\uD83D\uDE4B\uD83C\uDFFB\u200D♂\uFE0F\uD83D\uDE4B\uD83C\uDFFB\u200D♀\uFE0F Ismi : " +
-                                    botUser.getName() + "\n\uD83D\uDCF1 Tel : " + botUser.getPhone_num());
+                                    botUser.getName() + "\n\uD83D\uDCF1 Tel : " + botUser.getPhone_num()+"\n\uD83D\uDCDA "+botUser.getInterest());
                             sendMsg(admin1gaXabar); /** yangi user haqida admin1 ga xabar yuborish */
+                            /**----------------------------------------------- */
+
                             SendMessage admin2gaXabar = new SendMessage();
                             admin2gaXabar.setChatId(659565242L);
                             admin2gaXabar.setText("➕Yangi foydalanuvchi.\n\uD83D\uDE4B\uD83C\uDFFB\u200D♂\uFE0F\uD83D\uDE4B\uD83C\uDFFB\u200D♀\uFE0F Ismi : " +
-                                    botUser.getName() + "\n\uD83D\uDCF1 Tel : " + botUser.getPhone_num());
+                                    botUser.getName() + "\n\uD83D\uDCF1 Tel : " + botUser.getPhone_num()+"\n\uD83D\uDCDA "+botUser.getInterest());
                             sendMsg(admin2gaXabar); /** yangi user haqida admin2 ga xabar yuborish */
+                            /** -------------------------------------------------- */
+
                             SendMessage azamatgaXabar = new SendMessage();
                             azamatgaXabar.setChatId(5952923848L);
                             azamatgaXabar.setText("➕Yangi foydalanuvchi.\n\uD83D\uDE4B\uD83C\uDFFB\u200D♂\uFE0F\uD83D\uDE4B\uD83C\uDFFB\u200D♀\uFE0F Ismi : " +
-                                    botUser.getName() + "\n\uD83D\uDCF1 Tel : " + botUser.getPhone_num());
+                                    botUser.getName() + "\n\uD83D\uDCF1 Tel : " + botUser.getPhone_num()+"\n\uD83D\uDCDA "+botUser.getInterest());
                             sendMsg(azamatgaXabar); /** yangi user haqida admin2 ga xabar yuborish */
 
                             BotUser refUser = botUserService.getUserByPhone(currentUser.getRef_user_phone());
