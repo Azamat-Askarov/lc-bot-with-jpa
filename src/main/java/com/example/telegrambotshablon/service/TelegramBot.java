@@ -59,7 +59,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                         sendMessage.setText("/help - qo'llanma\n" +
                                 "/foydalanuvchi - foydalanuvchi parametrlari\n"
                                 + "/elon_reklama - bot foydalanuvchiariga e'lon yoki reklama yuborish\n" +
-                                "/shikoyat_taklif - bot adminiga xabar yuborish");
+                                "/shikoyat_taklif - adminga xabar yuborish");
                         sendMsg(sendMessage);
                     } else if (currentUser.getStep().equals(UserStep.END) && message.hasText() && message.getText().equals("/foydalanuvchi")) {
                         if (message.getFrom().getId().equals(5601022853L) || message.getChatId().equals(570695243L) || message.getChatId().equals(5952923848L)) {
