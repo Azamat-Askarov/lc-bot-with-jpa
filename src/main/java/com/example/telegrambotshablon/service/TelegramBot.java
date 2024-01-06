@@ -123,7 +123,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                         /** AzamatGA SHIKOYAT/TAKLIF NI YUBORISH */
                         SendMessage azamatgaXabar = new SendMessage();
                         azamatgaXabar.setChatId(5952923848L);
-                        azamatgaXabar.setText("\uD83D\uDCE9 Foydalanuvchidan xabar keldi\uD83D\uDC40\n\n" +
+                        azamatgaXabar.setText("\uD83D\uDCE9 Foydalanuvchidan xabar keldi\uD83D\uDC40\n" +
                                 "\uD83D\uDE4B\uD83C\uDFFB\u200D♂\uD83D\uDE4B\uD83C\uDFFB Ism: " + botUser.getName() +
                                 "\n\uD83D\uDCF1 Tel: " + botUser.getPhone_num() + "\n\n\uD83D\uDC49\uD83C\uDFFB " + message.getText());
                         sendMsg(azamatgaXabar);
