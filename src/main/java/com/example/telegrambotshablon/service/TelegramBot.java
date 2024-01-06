@@ -287,7 +287,7 @@ public class TelegramBot extends TelegramLongPollingBot {
                             totalResultMessage.setChatId(currentUser.getTg_id());
                             totalResultMessage.setText("✅To'liq ro'yxatdan o'tdingiz.\n" + "\uD83D\uDD17Sizning referral linkingiz:\nhttps://t.me/" +
                                     getBotUsername() + "?start=" + currentUser.getTg_id() + "\n\uD83D\uDE80Ushbu linkni do'stlaringizga uzating." +
-                                    "\n\n\uD83D\uDCB0Link orqali ro'yxatdan o'tgan har bir do'stingiz uchun sizga 1000 so'm bonus qo'shiladi.\nHozir sizda 10.000 so'm bonus mavjud");
+                                    "\n\n\uD83D\uDCB0Link orqali ro'yxatdan o'tgan har bir do'stingiz uchun sizga 1000 so'm bonus qo'shiladi.\n\uD83D\uDCB0 Hozir sizda 10.000 so'm bonus mavjud");
                             //------------------------------------//
                             ReplyKeyboardRemove removeButton = new ReplyKeyboardRemove(); /** keyboard button yashirish */
                             removeButton.setSelective(true);
