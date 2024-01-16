@@ -1,7 +1,11 @@
 bot.name :
-  EvosCloneUzBot
+  IshVakansiyaBot
+
+  #TeacherLCbot
 bot.token :
-  6642931179:AAFTkoInven3Lutt2th0hOKgwOk0gsbXkhM
+  6711370220:AAFA2LHqul95iLvSWgeCkjNZPeijg9TkTUw
+
+  #6974082636:AAGfYI3itukP3nGzdIS4e5CVP1iY9jP1keY
 
 spring:
   datasource:
@@ -11,7 +15,7 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
     properties:
       hibernate:

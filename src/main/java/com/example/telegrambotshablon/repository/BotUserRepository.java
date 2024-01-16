@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface BotUserRepository extends JpaRepository<BotUserEntity, Long> {
     @Query(value = "select tg_id from bot_users", nativeQuery = true)
-    List<Long> existsAllByTgId();
+    List<Long> existsAllByTgId(); /**  HQL code  */
 
     BotUserEntity getBotUserEntityByTgId(Long tgId);
 
